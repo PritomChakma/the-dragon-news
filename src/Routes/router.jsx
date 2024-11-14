@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import NewsDetails from "../Components/newsDetails";
 import AuthLayout from "../layout/AuthLayout";
 import HomeLayout from "../layout/HomeLayout";
 import CategoryNews from "../Pages/CategoryNews";
@@ -25,8 +26,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/news",
-    element: <h1>This is News element</h1>,
+    path: "/news/:id",
+    element: <NewsDetails></NewsDetails>,
+    loader: ({params})=>fetch(`https://openapi.programming-hero.com/api/news/${params.id}`)
   },
   {
     path: "auth",

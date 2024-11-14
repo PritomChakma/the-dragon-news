@@ -1,15 +1,31 @@
-import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContex } from "../provider/AuthProvider";
 
 const Register = () => {
+  const { createNewUser } = useContext(AuthContex);
+  
   const HandleRegistration = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
     const name = form.get("name");
     const photo = form.get("photo");
     const email = form.get("email");
-    const password = form.get("name");
-    console.log({name, photo, email, password});
+    const password = form.get("password");
+    console.log({ name, photo, email, password });
+
+    // CreateNewUser
+    createNewUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user)
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   return (
@@ -19,7 +35,6 @@ const Register = () => {
           Register your account
         </h2>
         <form onSubmit={HandleRegistration} className="card-body">
-          {/* card */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Your Name</span>
@@ -32,7 +47,6 @@ const Register = () => {
               required
             />
           </div>
-          {/* card */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Photo Url</span>
@@ -45,13 +59,12 @@ const Register = () => {
               required
             />
           </div>
-          {/* card */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Email Address</span>
             </label>
             <input
-              name="emial"
+              name="email"
               type="email"
               placeholder="Enter your email address"
               className="input input-bordered bg-[#F3F3F3]"
@@ -63,7 +76,7 @@ const Register = () => {
               <span className="label-text font-semibold">Password</span>
             </label>
             <input
-              name="passowrd"
+              name="password"
               type="password"
               placeholder="password"
               className="input input-bordered bg-[#F3F3F3]"

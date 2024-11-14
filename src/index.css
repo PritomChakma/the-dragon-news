@@ -4,5 +4,6 @@
 @tailwind utilities;
 
 a.active {
-  background-color: #b0caa4
+  background-color: #d72050;
+  color: white;
 }

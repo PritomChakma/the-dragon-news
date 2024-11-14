@@ -1,4 +1,5 @@
 import { FaBookmark, FaEye, FaShareAlt, FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NewsCard = (props = {}) => {
   const { news } = props || {};
@@ -35,8 +36,8 @@ const NewsCard = (props = {}) => {
 
       {/* Description */}
       <p className="text-gray-600 text-sm mb-3 overflow-y-scroll h-48">
-        {news.details}
-        <span className="text-blue-500 cursor-pointer"> Read More</span>
+      Wednesday, August 24, 2022 | Tag Cloud Tags: Biden, EU, Euro, Europe, Joe Biden, Military, News, Russia, Security, UK, Ukraine, United States, Worthy News (Worthy News) — U.S. President Joe Biden has announced nearly $3 billion in new U.S. military a...
+        <Link to={`/news/${news._id}`} className="text-blue-500 cursor-pointer"> Read More</Link>
       </p>
 
       {/* Footer */}
