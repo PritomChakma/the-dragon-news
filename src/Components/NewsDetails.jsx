@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Header from "./Header";
 import RightAsside from "./Layout-Component/RightAsside";
+import Navbar from "./Navbar";
 
 const NewsDetails = () => {
   const data = useLoaderData();
@@ -10,6 +11,7 @@ const NewsDetails = () => {
     <div>
       <header>
         <Header></Header>
+        <Navbar className="space-y-10"></Navbar>
       </header>
       <main className="w-11/12 mx-auto grid grid-cols-12">
         <section className="col-span-9">
