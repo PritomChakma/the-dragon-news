@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
+import { FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa6";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContex } from "../provider/AuthProvider";
-
 const Login = () => {
   const { userLogin, setUser } = useContext(AuthContex);
   const [error, setError] = useState({});
@@ -57,10 +58,30 @@ const Login = () => {
               required
             />
 
-            {error.login && <label className="label text-sm text-red-600">{error.login}</label>}
+            {error.login && (
+              <label className="label text-sm text-red-600">
+                {error.login}
+              </label>
+            )}
           </div>
           <div className="form-control mt-6">
             <button className="btn btn-neutral">Login</button>
+          </div>
+          <div className="form-control ">
+            <button className="btn ">
+              <span className="text-blue-500 font-bold text-lg">
+                <FaGoogle />
+              </span>
+              Login with Google
+            </button>
+          </div>
+          <div className="form-control ">
+            <button className="btn ">
+              <span className=" font-bold text-lg">
+                <FaGithub />
+              </span>
+              Login with github
+            </button>
           </div>
         </form>
         <p className="font-semibold text-center">

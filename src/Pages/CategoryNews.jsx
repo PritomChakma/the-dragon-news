@@ -10,11 +10,11 @@ const CategoryNews = () => {
       <p className="text-gray-400 text-sm">
         {news.length} News found on this News
       </p>
-      <div>
-        {news.map((singleNews) => (
-          <NewsCart key={singleNews._id} news={singleNews}></NewsCart>
-        ))}
-      </div>
+      <div className="grid grid-cols-2  gap-2">
+  {news.slice(0, 6).map((singleNews) => (
+    <NewsCart key={singleNews._id} news={singleNews}></NewsCart>
+  ))}
+</div>
     </div>
   );
 };

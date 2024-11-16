@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import LatestNews from "../Components/LatestNews";
 import LeftAsside from "../Components/Layout-Component/LeftAsside";
@@ -21,11 +22,14 @@ const HomeLayout = () => {
         <aside className="left col-span-3">
           <LeftAsside></LeftAsside>
         </aside>
-        <section className="col-span-6"><Outlet></Outlet></section>
+        <section className="col-span-6">
+          <Outlet></Outlet>
+        </section>
         <aside className="Right col-span-3">
           <RightAsside></RightAsside>
         </aside>
       </main>
+      <Footer className="w-11/12 mx-auto mt-10"></Footer>
     </div>
   );
 };
