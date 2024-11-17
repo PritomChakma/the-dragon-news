@@ -4,7 +4,8 @@ import { FaGithub } from "react-icons/fa6";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContex } from "../provider/AuthProvider";
 const Login = () => {
-  const { userLogin, setUser } = useContext(AuthContex);
+  const { userLogin, setUser, googleUserLogin, githubUserLogin } =
+    useContext(AuthContex);
   const [error, setError] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +27,33 @@ const Login = () => {
         setError({ ...error, login: err.code });
       });
   };
+  // google login
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    googleUserLogin()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((err) => {
+        setError({ ...error, login: err.code });
+      });
+  };
 
+  // github login
+  const handleGithubLogin = (e) => {
+    e.preventDefault();
+    githubUserLogin()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((err) => {
+        setError({ ...error, login: err.code });
+      });
+  };
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="card bg-base-100 w-full max-w-lg shrink-0 p-10">
@@ -68,7 +95,7 @@ const Login = () => {
             <button className="btn btn-neutral">Login</button>
           </div>
           <div className="form-control ">
-            <button className="btn ">
+            <button onClick={handleGoogleLogin} className="btn ">
               <span className="text-blue-500 font-bold text-lg">
                 <FaGoogle />
               </span>
@@ -76,7 +103,7 @@ const Login = () => {
             </button>
           </div>
           <div className="form-control ">
-            <button className="btn ">
+            <button onClick={handleGithubLogin} className="btn ">
               <span className=" font-bold text-lg">
                 <FaGithub />
               </span>

@@ -7,18 +7,26 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContex);
   return (
     <div className="flex justify-between items-center w-11/12 mx-auto py-2">
-      <div className="div font-bold">Email: {user && user.email}</div>
+      <div className="div ">
+        {" "}
+        <span className="font-bold">Name: </span>
+        {user && user.displayName}
+      </div>
       <div className="nav space-x-5">
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/carrer">Carrer</Link>
       </div>
-      <div className="login flex items-center gap-2">
+      <div className="login flex gap-2 items-center">
         <div className="div">
           {user && user?.email ? (
             <div>
-            <img className="w-16 rounded-full" src={user.photoURL} alt="" srcset="" />
-              <p>{user.displayName}</p>
+              <img
+                className="w-12 rounded-full"
+                src={user.photoURL}
+                alt=""
+                srcset=""
+              />
             </div>
           ) : (
             <img src={userIcon} srcset="" />
